@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('start');
-});
+use App\HelloWorld;
+
+Route::get('/', 'HelloWorldController@index');
+
+Route::get('/api/helloworld', '\App\Http\Controllers\HelloWorldController@get');
