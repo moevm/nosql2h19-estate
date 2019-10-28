@@ -8,5 +8,5 @@ class HelloWorld extends Eloquent
 {
     //
     protected $collection = 'hello_world';
-    protected $fillable = ['hello'];
+//    protected $fillable = ['hello'];
 }
