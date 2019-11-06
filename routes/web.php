@@ -11,8 +11,10 @@
 |
 */
 
-use App\HelloWorld;
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', 'HelloWorldController@index');
+Auth::routes();
 
-Route::get('/api/helloworld', '\App\Http\Controllers\HelloWorldController@get');
+Route::get('/home', 'HomeController@index')->name('home');
