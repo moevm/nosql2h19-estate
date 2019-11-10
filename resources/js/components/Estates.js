@@ -27,13 +27,21 @@ export default class Estates extends Component {
 
         function makeColumns(row, i) {
             return (
-                <tr key={i} onClick={}>
+                <tr key={i}>
                     <td>{row.Country}</td>
                     <td>{row.City}</td>
                     <td>{row.layout}</td>
                     <td>{row.price}</td>
+                    <td>
+                        <button onClick={() => { handleSearch(row._id)} } className="button">Hey</button>
+                    </td>
                 </tr>
             );
+        }
+
+        function handleSearch(i) {
+            // console.log(i);
+            window.location.assign('/estates/' + i);
         }
 
         tableTemplate = this.state.estates.map((row, i) => {
@@ -42,10 +50,18 @@ export default class Estates extends Component {
 
         return(
             <div className="container">
-                <table border="1">
-
+                <table className="user-list table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Страна</td>
+                            <td>Город</td>
+                            <td>Планировка</td>
+                            <td>Цена</td>
+                            <td>Подробнее</td>
+                        </tr>
+                    </thead>
                     <tbody>
-                    {tableTemplate}
+                        {tableTemplate}
                     </tbody>
                 </table>
             </div>
@@ -53,6 +69,6 @@ export default class Estates extends Component {
     }
 }
 
-if (document.getElementById('root')) {
-    ReactDOM.render(<Estates />, document.getElementById('root'));
+if (document.getElementById('estates')) {
+    ReactDOM.render(<Estates />, document.getElementById('estates'));
 }

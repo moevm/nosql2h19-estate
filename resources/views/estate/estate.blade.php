@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2 style="text-align: center"> Estate</h2>
-<div id="estates"></div>
+<div id="estate"></div>
 <script src="{{mix('js/app.js')}}" ></script>
 </body>
 </html>

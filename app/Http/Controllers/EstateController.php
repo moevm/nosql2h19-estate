@@ -10,4 +10,9 @@ class EstateController extends Controller
     {
         return view('estate\estates');
     }
+
+    public function show()
+    {
+        return view('estate\estate');
+    }
 }

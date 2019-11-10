@@ -13,3 +13,4 @@ require('./bootstrap');
  */
 
 require('./components/Estates');
+require('./components/Estate');
