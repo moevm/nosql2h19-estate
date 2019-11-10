@@ -16,4 +16,4 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('articles', 'ArticleController@index');
+Route::get('estates', 'EstateController@index');
