@@ -11,12 +11,7 @@
 |
 */
 
-use App\HelloWorld;
-
-Route::get('/', 'HelloWorldController@index');
-
-Route::get('/api/helloworld', '\App\Http\Controllers\HelloWorldController@get');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
