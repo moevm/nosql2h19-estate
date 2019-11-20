@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Article;
+use App\Estate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,8 +14,9 @@ class ArticleApiController extends Controller
         return Article::all();
     }
 
-    public function show(Article $article)
+    public function show(Estate $estate)
     {
+        $article = Article::where('Estate_id', $estate->_id)->get()->first();
         return $article;
     }
 
