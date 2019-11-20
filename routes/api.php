@@ -16,3 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// estate
+Route::get('estates', 'Api\EstateApiController@index');
+Route::get('estates/{estate}', 'Api\EstateApiController@show');
+Route::get('estate/search', 'Api\EstateSearchApiController@search');
+
+Route::post('estates', 'Api\EstateApiController@store');
+Route::put('estates/{estate}', 'Api\EstateApiController@update');
+Route::delete('estates/{estate}', 'Api\EstateApiController@delete');
+
+//article
+Route::get('articles/{estate}', 'Api\ArticleApiController@show');
+

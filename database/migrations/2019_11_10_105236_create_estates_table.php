@@ -3,7 +3,7 @@
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateEstatesTable extends Migration
 {
     /**
      * The name of the database connection to use.
@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::connection($this->connection)
-            ->table('users', function (Blueprint $collection)
+            ->table('estates', function (\Jenssegers\Mongodb\Schema\Blueprint $collection)
             {
                 $collection->index('name');
             });
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::connection($this->connection)
-            ->table('users', function (Blueprint $collection)
+            ->table('estates', function (Blueprint $collection)
             {
                 $collection->drop();
             });

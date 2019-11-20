@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Article;
+use App\Estate;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class ArticleApiController extends Controller
+{
+    public function index()
+    {
+        return Article::all();
+    }
+
+    public function show(Estate $estate)
+    {
+        $article = Article::where('Estate_id', $estate->_id)->get()->first();
+        return $article;
+    }
+
+    public function store(Request $request)
+    {
+        $article = Article::create($request->all());
+
+        return response()->json($article, 201);
+    }
+
+    public function update(Request $request, Article $article)
+    {
+        $article->update($request->all());
+
+        return response()->json($article, 200);
+    }
+
+    public function delete(Article $article)
+    {
+        $article->delete();
+
+        return response()->json(null, 204);
+    }
+}
