@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class Estates extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
+            pagination: [],
             estates: [],
             searchCity: '',
             searchCountry: '',
             searchLayout: '',
-            searchPrice: 0
+            searchPrice: 0,
+            url: ''
         };
 
         this.changeCountry = this.changeCountry.bind(this);
@@ -46,7 +48,7 @@ export default class Estates extends Component {
     }
 
     search(event) {
-        axios.get('/api/estate/search',
+        axios.get('api/estate/search',
             {
             params: {
                 country: this.state.searchCountry,
@@ -54,12 +56,13 @@ export default class Estates extends Component {
                 layout: this.state.searchLayout,
                 price: this.state.searchPrice
             }
-        }
-        )
+        })
         .then(response => {
             this.setState({
                 estates: response.data
-            })
+            });
+
+            this.makePagination(response.data);
         });
     }
 
@@ -74,11 +77,56 @@ export default class Estates extends Component {
     }
 
     returnFields() {
-        axios.get('/api/estates').then(response => {
+        axios.get('api/estates').then(response => {
             this.setState({
-                estates: response.data
-            })
+                estates: response.data.data
+            });
+            this.makePagination(response.data);
         });
+    }
+
+    loadNextPage() {
+        this.setState({
+            url: this.state.pagination.nextPageUrl
+        });
+
+        if (this.state.pagination.nextPageUrl) {
+            axios.get(this.state.pagination.nextPageUrl).then(response => {
+                this.setState({
+                    estates: response.data.data
+                });
+                this.makePagination(response.data);
+            });
+        }
+    }
+
+    loadPrevPage() {
+        this.setState({
+            url: this.state.pagination.prevPageUrl
+        });
+
+        if (this.state.pagination.prevPageUrl) {
+            axios.get(this.state.pagination.prevPageUrl).then(response => {
+                this.setState({
+                    estates: response.data.data
+                });
+                this.makePagination(response.data);
+            });
+        }
+    }
+
+    makePagination(data) {
+        let pagination = {
+            currentPage: data.current_page,
+            lastPage: data.last_page,
+            nextPageUrl: data.next_page_url,
+            prevPageUrl: data.prev_page_url,
+            url: data.path
+        };
+
+        this.setState({
+            pagination: pagination
+        })
     }
 
     componentDidMount() {
@@ -177,6 +225,8 @@ export default class Estates extends Component {
                         {tableTemplate}
                     </tbody>
                 </table>
+                <button className="btn btn-default" onClick={this.loadNextPage.bind(this)}>Next Page</button>
+                <button className="btn btn-default" onClick={this.loadPrevPage.bind(this)}>Prev Page</button>
             </div>
         );
     }
