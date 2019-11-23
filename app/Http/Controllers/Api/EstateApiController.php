@@ -10,7 +10,8 @@ class EstateApiController extends Controller
 {
     public function index()
     {
-        return Estate::all();
+        $estates = Estate::paginate(5);
+        return $estates;
     }
 
     public function show(Estate $estate)
