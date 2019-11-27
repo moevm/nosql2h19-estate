@@ -14,3 +14,4 @@ require('./bootstrap');
 
 require('./components/Estates');
 require('./components/Estate');
+require('./components/Lk');

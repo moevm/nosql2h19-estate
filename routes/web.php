@@ -18,3 +18,4 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('estates', 'EstateController@index');
 Route::get('estates/{estate}', 'EstateController@show');
+Route::get('lk', 'LkController@show');
