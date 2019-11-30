@@ -13,12 +13,14 @@ class EstateSearchApiController extends Controller
         $city = $request->get('city');
         $country = $request->get('country');
         $layout = $request->get('layout');
-        $price = intval($request->get('price'));
+        $priceUp = intval($request->get('priceUp'));
+        $priceDown = intval($request->get('priceDown'));
 
         $estates = Estate::where('City', $city)
                             ->where('Country', $country)
                             ->where('layout', $layout)
-                            ->where('price', '<', $price)
+                            ->where('price', '<=', $priceDown)
+                            ->where('price', '>=', $priceUp)
                             ->get();
         return $estates;
     }

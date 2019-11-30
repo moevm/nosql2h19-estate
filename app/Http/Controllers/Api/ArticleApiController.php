@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Article;
 use App\Estate;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,5 +40,21 @@ class ArticleApiController extends Controller
         $article->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function getArticlesForUser(Request $request)
+    {
+        $userId = $request->get('user_id');
+        $user = User::find(str_replace('"', '', $userId));
+        $articlesArr = $user->articles;
+
+        $articlesColl = collect();
+
+        foreach ($articlesArr as $key => $value) {
+            $articles = Article::find($value);
+            $articlesColl->push($articles);
+        }
+
+        return $articlesColl;
     }
 }
