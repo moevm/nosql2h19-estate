@@ -15,3 +15,6 @@ require('./bootstrap');
 require('./components/Estates');
 require('./components/Estate');
 require('./components/Lk');
+require('./components/EstateStatistics');
+require('./components/EstateAdd');
+

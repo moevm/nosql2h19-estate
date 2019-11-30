@@ -41,7 +41,6 @@ export default class Estate extends Component {
                     {this.state.estate.middle_name}
                     {this.state.estate.number}
                     {this.state.estate.email}
-                    {this.state.estate.article_id}
                     {this.state.estate.price}
                     {this.state.estate.year_build}
                     {this.state.estate.square}

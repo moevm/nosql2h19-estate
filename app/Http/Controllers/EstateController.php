@@ -15,4 +15,14 @@ class EstateController extends Controller
     {
         return view('estate\estate');
     }
+
+    public function store()
+    {
+        return view('estate\estateAdd');
+    }
+
+    public function showStatistics()
+    {
+        return view('estate\statistics');
+    }
 }

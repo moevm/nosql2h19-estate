@@ -6,21 +6,16 @@ export default class Estates extends Component {
         super(props);
 
         this.state = {
+            userId: this.props.user,
             pagination: [],
             estates: [],
             searchCity: '',
             searchCountry: '',
             searchLayout: '',
-            searchPrice: 0,
+            searchPriceUp: 0,
+            searchPriceDown: 0,
             url: ''
         };
-
-        this.changeCountry = this.changeCountry.bind(this);
-        this.changeCity = this.changeCity.bind(this);
-        this.changeLayout = this.changeLayout.bind(this);
-        this.changePrice = this.changePrice.bind(this);
-        this.search = this.search.bind(this);
-        this.clean = this.clean.bind(this);
     }
 
     changeCountry(event) {
@@ -41,20 +36,27 @@ export default class Estates extends Component {
         });
     }
 
-    changePrice(event) {
+    changePriceUp(event) {
         this.setState({
-            searchPrice: event.target.value
+            searchPriceUp: event.target.value
         });
     }
 
-    search(event) {
+    changePriceDown(event) {
+        this.setState({
+            searchPriceDown: event.target.value
+        });
+    }
+
+    search() {
         axios.get('api/estate/search',
             {
             params: {
                 country: this.state.searchCountry,
                 city: this.state.searchCity,
                 layout: this.state.searchLayout,
-                price: this.state.searchPrice
+                priceUp: this.state.searchPriceUp,
+                priceDown: this.state.searchPriceDown
             }
         })
         .then(response => {
@@ -66,12 +68,13 @@ export default class Estates extends Component {
         });
     }
 
-    clean(event) {
+    clean() {
         this.setState({
             searchCity: '',
             searchCountry: '',
             searchLayout: '',
-            searchPrice: 0
+            searchPriceUp: 0,
+            searchPriceDown: 0
         });
         this.returnFields();
     }
@@ -137,6 +140,10 @@ export default class Estates extends Component {
 
     }
 
+    newEstate() {
+        window.location.assign('/estate/add');
+    }
+
     render() {
         let tableTemplate;
 
@@ -147,6 +154,7 @@ export default class Estates extends Component {
                     <td>{row.City}</td>
                     <td>{row.layout}</td>
                     <td>{row.price}</td>
+                    <td>{row.square}</td>
                 </tr>
             );
         }
@@ -171,7 +179,7 @@ export default class Estates extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Search estates by country"
-                                    onChange={this.changeCountry}
+                                    onChange={this.changeCountry.bind(this)}
                                 />
                             </label>
                             <label>
@@ -181,7 +189,7 @@ export default class Estates extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Search estates by city"
-                                    onChange={this.changeCity}
+                                    onChange={this.changeCity.bind(this)}
                                 />
                             </label>
                             <label>
@@ -191,22 +199,35 @@ export default class Estates extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Search estates by layout"
-                                    onChange={this.changeLayout}
+                                    onChange={this.changeLayout.bind(this)}
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Стоимость, от:
+                                <input
+                                    value={this.state.searchPriceUp}
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Search estates by price"
+                                    onChange={this.changePriceUp.bind(this)}
+                                    required
                                 />
                             </label>
                             <label>
                                 Стоимость, до:
                                 <input
-                                    value={this.state.searchPrice}
-                                    type="text"
+                                    value={this.state.searchPriceDown}
+                                    type="number"
                                     className="form-control"
                                     placeholder="Search estates by price"
-                                    onChange={this.changePrice}
+                                    onChange={this.changePriceDown.bind(this)}
+                                    required
                                 />
                             </label>
                         </div>
-                        <button onClick={this.search}>Поиск</button>
-                        <button onClick={this.clean}>Очистить</button>
+                        <button onClick={this.search.bind(this)}>Поиск</button>
+                        <button onClick={this.clean.bind(this)}>Очистить</button>
                     </div>
                 </div>
                 <h2>
@@ -219,6 +240,7 @@ export default class Estates extends Component {
                             <td>Город</td>
                             <td>Планировка</td>
                             <td>Цена</td>
+                            <td>Площадь</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -227,11 +249,13 @@ export default class Estates extends Component {
                 </table>
                 <button className="btn btn-default" onClick={this.loadNextPage.bind(this)}>Next Page</button>
                 <button className="btn btn-default" onClick={this.loadPrevPage.bind(this)}>Prev Page</button>
+                <button className="btn btn-default" onClick={this.newEstate.bind(this)}>Add Estate</button>
             </div>
         );
     }
 }
 
 if (document.getElementById('estates')) {
-    ReactDOM.render(<Estates />, document.getElementById('estates'));
+    let userId = document.getElementById('estates').getAttribute('data');
+    ReactDOM.render(<Estates user={userId}/>, document.getElementById('estates'));
 }

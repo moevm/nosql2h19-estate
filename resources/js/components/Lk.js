@@ -57,6 +57,10 @@ export default class Lk extends Component {
         })
     }
 
+    static openStatistics() {
+        window.location.assign('/estate/statistics');
+    }
+
     componentDidMount() {
         this.returnFields();
     }
@@ -116,6 +120,9 @@ export default class Lk extends Component {
                 </table>
                 <button className="btn btn-default" onClick={this.loadNextPage.bind(this)}>Next Page</button>
                 <button className="btn btn-default" onClick={this.loadPrevPage.bind(this)}>Prev Page</button>
+                <div>
+                    <button className="btn btn-default" onClick={Lk.openStatistics.bind(this)}>Statistics</button>
+                </div>
             </div>
         );
     }
