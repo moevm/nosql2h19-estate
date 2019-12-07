@@ -26,11 +26,10 @@ Route::get('estate/square-price-get', 'Api\EstateApiController@getSquarePriceArr
 Route::get('estate/sellers-customers', 'Api\EstateApiController@getSellerCustomerArr');
 Route::post('estates', 'Api\EstateApiController@store');
 
-//Route::put('estates/{estate}', 'Api\EstateApiController@update');
-//Route::delete('estates/{estate}', 'Api\EstateApiController@delete');
-
 Route::post('get-articles', 'Api\ArticleApiController@getArticlesForUser');
 Route::get('articles/{article}', 'Api\ArticleApiController@show');
 Route::post('articles', 'Api\ArticleApiController@addArticleForUser');
+Route::get('csv-file/export', 'Api\ImportExportApiController@csvExport');
+Route::post('csv-file/import', 'Api\ImportExportApiController@csvImport')->name('import');
 
-
+Route::post('check-admin', 'Api\LkApiController@isAdmin');

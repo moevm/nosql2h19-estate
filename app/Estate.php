@@ -21,6 +21,8 @@ class Estate extends Eloquent
         'price',
         'year_build',
         'square',
-        'type_house'
+        'type_house',
+        'is_primary',
+        'layout'
     ];
 }

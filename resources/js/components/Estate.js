@@ -26,7 +26,6 @@ export default class Estate extends Component {
             this.setState({
                 estate: response.data
             });
-            console.log(this.state.estate.article_id);
             axios.get('/api/articles/' + this.state.estate.article_id).then(response => {
                 this.setState({
                     article: response.data
