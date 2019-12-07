@@ -13,6 +13,7 @@ class EstateAdd extends Component {
             address: '',
             country: '',
             number: '',
+            email: '',
             price: '',
             yearBuild: '',
             square: '',
@@ -28,6 +29,7 @@ class EstateAdd extends Component {
         this.changeAddress = this.changeAddress.bind(this);
         this.changeCountry = this.changeCountry.bind(this);
         this.changeNumber = this.changeNumber.bind(this);
+        this.changeEmail = this.changeEmail.bind(this);
         this.changePrice = this.changePrice.bind(this);
         this.changeYearBuild = this.changeYearBuild.bind(this);
         this.changeSquare = this.changeSquare.bind(this);
@@ -54,6 +56,12 @@ class EstateAdd extends Component {
     changeNumber(event) {
         this.setState({
             number: event.target.value
+        });
+    }
+
+    changeEmail(event) {
+        this.setState({
+            email: event.target.value
         });
     }
 
@@ -143,123 +151,162 @@ class EstateAdd extends Component {
         return(
             <div className="container">
                 <div className="form-group">
-                    <label>
-                        City:
-                        <input value={this.state.city}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeCity}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Address:
-                        <input value={this.state.address}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeAddress}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Country:
-                        <input value={this.state.country}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeCountry}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Number:
-                        <input value={this.state.number}
-                               type="tel"
-                               className="form-control"
-                               onChange={this.changeNumber}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Price:
-                        <input value={this.state.price}
-                               type="number"
-                               className="form-control"
-                               onChange={this.changePrice}
-                               required
-                        />
-                    </label>
-                    <label>
-                        YearBuild:
-                        <input value={this.state.yearBuild}
-                               type="number"
-                               className="form-control"
-                               onChange={this.changeYearBuild}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Square:
-                        <input value={this.state.square}
-                               type="number"
-                               className="form-control"
-                               onChange={this.changeSquare}
-                               required
-                        />
-                    </label>
-                    <label>
-                        TypeHouse:
-                        <input value={this.state.typeHouse}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeTypeHouse}
-                               required
-                        />
-                    </label>
-                    <label>
-                        IsPrimary:
-                        <input value={this.state.isPrimary}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeIsPrimary}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Layout:
-                        <input value={this.state.layout}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeLayout}
-                               required
-                        />
-                    </label>
-                    <label>
-                        NameArticle:
-                        <input value={this.state.name}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeName}
-                               required
-                        />
-                    </label>
-                    <label>
-                        Description:
-                        <input value={this.state.description}
-                               type="text"
-                               className="form-control"
-                               onChange={this.changeDescription}
-                               required
-                        />
-                    </label>
-                    <label>
-                        PlacementDate:
-                        <input value={this.state.placementDate}
-                               type="date"
-                               className="form-control"
-                               onChange={this.changePlacementDate}
-                               required
-                        />
-                    </label>
+                    <ul className="list-group">
+                        <li className="list-group-item">
+                            <label>
+                                City:
+                                <input value={this.state.city}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeCity}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Address:
+                                <input value={this.state.address}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeAddress}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Country:
+                                <input value={this.state.country}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeCountry}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Number:
+                                <input value={this.state.number}
+                                       type="tel"
+                                       className="form-control"
+                                       onChange={this.changeNumber}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Email:
+                                <input value={this.state.email}
+                                       type="email"
+                                       className="form-control"
+                                       onChange={this.changeEmail}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Price:
+                                <input value={this.state.price}
+                                       type="number"
+                                       className="form-control"
+                                       onChange={this.changePrice}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                YearBuild:
+                                <input value={this.state.yearBuild}
+                                       type="number"
+                                       className="form-control"
+                                       onChange={this.changeYearBuild}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Square:
+                                <input value={this.state.square}
+                                       type="number"
+                                       className="form-control"
+                                       onChange={this.changeSquare}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                TypeHouse:
+                                <input value={this.state.typeHouse}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeTypeHouse}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                IsPrimary:
+                                <input value={this.state.isPrimary}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeIsPrimary}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Layout:
+                                <input value={this.state.layout}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeLayout}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                NameArticle:
+                                <input value={this.state.name}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeName}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                Description:
+                                <input value={this.state.description}
+                                       type="text"
+                                       className="form-control"
+                                       onChange={this.changeDescription}
+                                       required
+                                />
+                            </label>
+                        </li>
+                        <li className="list-group-item">
+                            <label>
+                                PlacementDate:
+                                <input value={this.state.placementDate}
+                                       type="date"
+                                       className="form-control"
+                                       onChange={this.changePlacementDate}
+                                       required
+                                />
+                            </label>
+                        </li>
+                    </ul>
                     <button onClick={this.addEstate.bind(this)}>Добавить</button>
                 </div>
             </div>

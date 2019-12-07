@@ -30,7 +30,7 @@ Route::post('estates', 'Api\EstateApiController@store');
 //Route::delete('estates/{estate}', 'Api\EstateApiController@delete');
 
 Route::post('get-articles', 'Api\ArticleApiController@getArticlesForUser');
+Route::get('articles/{article}', 'Api\ArticleApiController@show');
+Route::post('articles', 'Api\ArticleApiController@addArticleForUser');
 
-//article
-Route::get('articles/{estate}', 'Api\ArticleApiController@show');
 

@@ -80,6 +80,14 @@ export default class Lk extends Component {
 
     }
 
+    Import() {
+
+    }
+
+    Export() {
+
+    }
+
     render() {
         let tableTemplate;
 
@@ -122,6 +130,8 @@ export default class Lk extends Component {
                 <button className="btn btn-default" onClick={this.loadPrevPage.bind(this)}>Prev Page</button>
                 <div>
                     <button className="btn btn-default" onClick={Lk.openStatistics.bind(this)}>Statistics</button>
+                    <button className="btn btn-default" onClick={this.Import.bind(this)}>Import</button>
+                    <button className="btn btn-default" onClick={this.Export.bind(this)}>Export</button>
                 </div>
             </div>
         );

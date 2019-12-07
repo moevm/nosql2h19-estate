@@ -15,9 +15,8 @@ class ArticleApiController extends Controller
         return Article::all();
     }
 
-    public function show(Estate $estate)
+    public function show(Article $article)
     {
-        $article = Article::where('Estate_id', $estate->_id)->get()->first();
         return $article;
     }
 
@@ -56,5 +55,23 @@ class ArticleApiController extends Controller
         }
 
         return $articlesColl;
+    }
+
+    public function addArticleForUser(Request $request)
+    {
+        $userId = $request->get('user_id');
+        $user = User::find(str_replace('"', '', $userId));
+
+        $articleId = $request->get('article_id');
+
+        $article = in_array($articleId, $user->articles);
+        if ($article) {
+            return 'Статья уже добавлена в закладки.';
+        }
+        else {
+            $user->articles = array_merge($user->articles, [$articleId]);
+            $user->save();
+            return 'Статья успешно добавлена в закладки.';
+        }
     }
 }
