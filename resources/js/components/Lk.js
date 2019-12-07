@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import ChartPie from "./ChartPie";
 
 export default class Lk extends Component {
     constructor(props) {
@@ -9,8 +10,29 @@ export default class Lk extends Component {
             userId: this.props.user,
             articles: [],
             pagination: [],
-            url: ''
+            url: '',
+            files: null,
+            isAdmin: null
         };
+        this.checkAdmin();
+    }
+
+    checkAdmin() {
+        axios.post('/api/check-admin', {
+            user_id: this.state.userId
+        }).
+        then(response => {
+            this.setState({
+                isAdmin: Boolean(response.data)
+            });
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.setState({
+            file: this.fileInput.current.files[0].name
+        });
     }
 
     loadNextPage() {
@@ -81,11 +103,23 @@ export default class Lk extends Component {
     }
 
     Import() {
+        let reader = new FileReader();
+        reader.readAsDataURL(this.state.files[0]);
 
+        reader.onload = (e) => {
+            axios.post('/api/csv-file/import', {
+                file: e.target.result
+            }).
+            then(response => {
+                alert(response.data);
+            });
+        }
     }
 
-    Export() {
-
+    onChange(e) {
+        this.setState({
+            files: e.target.files
+        });
     }
 
     render() {
@@ -128,11 +162,23 @@ export default class Lk extends Component {
                 </table>
                 <button className="btn btn-default" onClick={this.loadNextPage.bind(this)}>Next Page</button>
                 <button className="btn btn-default" onClick={this.loadPrevPage.bind(this)}>Prev Page</button>
-                <div>
-                    <button className="btn btn-default" onClick={Lk.openStatistics.bind(this)}>Statistics</button>
-                    <button className="btn btn-default" onClick={this.Import.bind(this)}>Import</button>
-                    <button className="btn btn-default" onClick={this.Export.bind(this)}>Export</button>
-                </div>
+                {this.state.isAdmin ?
+                    <div>
+                        <div>
+                            <button className="btn btn-default" onClick={Lk.openStatistics.bind(this)}>Statistics</button>
+                        </div>
+                        <form onSubmit={this.onFormSubmit}>
+                            <label>
+                                Upload file:
+                                <input type="file" accept=".csv" onChange={(e)=>this.onChange(e)}/>
+                            </label>
+
+                            <br/>
+                            <button className="btn btn-default" onClick={this.Import.bind(this)}>Import</button>
+                            <a className="btn btn-default" href="/api/csv-file/export">Export</a>
+                        </form>
+                    </div> : <p> </p>
+                }
             </div>
         );
     }

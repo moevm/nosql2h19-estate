@@ -143,7 +143,7 @@ class EstateAdd extends Component {
             Placement_date: this.state.placementDate
         }).
         then(response => {
-            alert('пользователь добавлен');
+            alert('Недвижимость добавлена');
         });
     }
 

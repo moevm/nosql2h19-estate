@@ -64,12 +64,19 @@ class ArticleApiController extends Controller
 
         $articleId = $request->get('article_id');
 
-        $article = in_array($articleId, $user->articles);
-        if ($article) {
-            return 'Статья уже добавлена в закладки.';
+        if ($user->articles) {
+            $article = in_array($articleId, $user->articles);
+            if ($article) {
+                return 'Статья уже добавлена в закладки.';
+            }
+            else {
+                $user->articles = array_merge($user->articles, [$articleId]);
+                $user->save();
+                return 'Статья успешно добавлена в закладки.';
+            }
         }
         else {
-            $user->articles = array_merge($user->articles, [$articleId]);
+            $user->articles = [$articleId];
             $user->save();
             return 'Статья успешно добавлена в закладки.';
         }
