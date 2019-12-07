@@ -10,10 +10,11 @@ const lr =  {
 };
 
 export default class Estate extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
+            userId: this.props.user,
             estate: [],
             article: [],
             setState: ''
@@ -25,29 +26,48 @@ export default class Estate extends Component {
             this.setState({
                 estate: response.data
             });
-        });
-
-        axios.get('/api/articles/5dc7f1cbb9ca571f244d9661').then(response => {
-            this.setState({
-                article: response.data
-            })
+            console.log(this.state.estate.article_id);
+            axios.get('/api/articles/' + this.state.estate.article_id).then(response => {
+                this.setState({
+                    article: response.data
+                })
+            });
         });
 
         this.setState({btnAdd: 'Добавить в закладки'});
     }
 
-    componentDidUpdate() {
+    addArticle() {
+        axios.post('/api/articles', {
+            user_id: this.state.userId,
+            article_id: this.state.estate.article_id
+        }).
+        then(response => {
+            alert(response.data);
+        });
 
+        this.setState({btnAdd: 'Добавлено в закладки'});
     }
 
     render() {
         return(
             <div className="container">
+                <h2 align="center">
+                    {this.state.article.Name}
+                </h2>
                 <div style={{display: 'table', width: '100%'}}>
                     <div className="image" style={lr}>
                         <div style={{}}>
                             <img src="https://freshome.com/wp-content/uploads/2012/06/Swedish-apartment-14.jpg" alt="Picture of estate" />
                             {this.str}
+                            Описание:
+                            <p>
+                                {this.state.article.Description}
+                            </p>
+                            Дата размещения объявления:
+                            <p>
+                                {this.state.article.Placement_date}
+                            </p>
                         </div>
                     </div>
                     <div className="desc" style={lr}>
@@ -76,9 +96,6 @@ export default class Estate extends Component {
                             email: {this.state.estate.email}
                         </p>
                         <p>
-                            article_id: {this.state.article.Estate_id}
-                        </p>
-                        <p>
                             price: {this.state.estate.price}
                         </p>
                         <p>
@@ -96,16 +113,7 @@ export default class Estate extends Component {
                         <p>
                             layout: {this.state.estate.layout}
                         </p>
-                        <p>
-                            Name: {this.state.article.Name}
-                        </p>
-                        <p>
-                            Description: {this.state.article.Description}
-                        </p>
-                        <p>
-                            Placement_date: {this.state.article.Placement_date}
-                        </p>
-                        <button className="btn btn-default" style={{float:'left'}} onClick={() => this.setState({btnAdd: 'Добавлено в закладки'})}>{this.state.btnAdd}</button>
+                        <button className="btn btn-default" style={{float:'left'}} onClick={this.addArticle.bind(this)}>{this.state.btnAdd}</button>
                     </div>
                 </div>
 
@@ -115,5 +123,6 @@ export default class Estate extends Component {
 }
 
 if (document.getElementById('estate')) {
-    ReactDOM.render(<Estate />, document.getElementById('estate'));
+    let userId = document.getElementById('estate').getAttribute('data');
+    ReactDOM.render(<Estate user={userId}/>, document.getElementById('estate'));
 }

@@ -45,7 +45,9 @@ class EstateApiController extends Controller
             'Placement_date' => $request->get('Placement_date'),
             'Estate_id' => $estate->_id
         ]);
-        return response()->json($estate, 201);;
+        $estate->article_id = $article->_id;
+        $estate->save();
+        return response()->json($estate, 201);
     }
 
     public function update(Request $request, Estate $estate)

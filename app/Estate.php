@@ -17,6 +17,7 @@ class Estate extends Eloquent
         'middle_name',
         'number',
         'email',
+        'article_id',
         'price',
         'year_build',
         'square',
