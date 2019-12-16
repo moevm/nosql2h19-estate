@@ -56,7 +56,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/lk">
-                                        Личный кабинет
+                                        Personal cabinet
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

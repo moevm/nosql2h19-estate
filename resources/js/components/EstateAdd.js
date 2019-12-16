@@ -220,7 +220,7 @@ class EstateAdd extends Component {
                         </li>
                         <li className="list-group-item">
                             <label>
-                                YearBuild:
+                                Year of build:
                                 <input value={this.state.yearBuild}
                                        type="number"
                                        className="form-control"
@@ -242,7 +242,7 @@ class EstateAdd extends Component {
                         </li>
                         <li className="list-group-item">
                             <label>
-                                TypeHouse:
+                                House type:
                                 <input value={this.state.typeHouse}
                                        type="text"
                                        className="form-control"
@@ -253,7 +253,7 @@ class EstateAdd extends Component {
                         </li>
                         <li className="list-group-item">
                             <label>
-                                IsPrimary:
+                                Is primary:
                                 <input value={this.state.isPrimary}
                                        type="text"
                                        className="form-control"
@@ -275,7 +275,7 @@ class EstateAdd extends Component {
                         </li>
                         <li className="list-group-item">
                             <label>
-                                NameArticle:
+                                Article name:
                                 <input value={this.state.name}
                                        type="text"
                                        className="form-control"
@@ -297,7 +297,7 @@ class EstateAdd extends Component {
                         </li>
                         <li className="list-group-item">
                             <label>
-                                PlacementDate:
+                                Date of placement:
                                 <input value={this.state.placementDate}
                                        type="date"
                                        className="form-control"
@@ -307,7 +307,7 @@ class EstateAdd extends Component {
                             </label>
                         </li>
                     </ul>
-                    <button onClick={this.addEstate.bind(this)}>Добавить</button>
+                    <button onClick={this.addEstate.bind(this)}>Add</button>
                 </div>
             </div>
         );

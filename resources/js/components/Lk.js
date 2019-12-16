@@ -146,14 +146,14 @@ export default class Lk extends Component {
         return(
             <div className="container">
                 <h2>
-                    Закладки
+                    Bookmarks
                 </h2>
                 <table className="user-list table table-striped">
                     <thead>
                     <tr>
-                        <td>Имя статьи</td>
-                        <td>Описание статьи</td>
-                        <td>Дата публикации</td>
+                        <td>Estate name</td>
+                        <td>Description</td>
+                        <td>Publication Date</td>
                     </tr>
                     </thead>
                     <tbody>

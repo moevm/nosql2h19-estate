@@ -124,20 +124,20 @@ export default class EstateStatistics extends Component {
         return(
             <div className="container">
                 <h2>
-                    Зависимость цены от города
+                    Price dependence on city
                 </h2>
                 {this.state.isGraphCityPrice ?
-                    <ChartBar chartData={this.state.chartDataCityPrice}> </ChartBar> : <p>Подождите</p>}
+                    <ChartBar chartData={this.state.chartDataCityPrice}> </ChartBar> : <p>Wait</p>}
                 <h2>
-                    Зависимость цены от площади
+                    Price dependence on square
                 </h2>
                 {this.state.isGraphSquarePrice ?
-                    <ChartLine chartData={this.state.chartDataSquarePrice}> </ChartLine> : <p>Подождите</p>}
+                    <ChartLine chartData={this.state.chartDataSquarePrice}> </ChartLine> : <p>Wait</p>}
                 <h2>
-                    Зависимость покупателей от продавцов
+                    Consumers dependence on seller
                 </h2>
                 {this.state.isGraphSellerCustomer ?
-                    <ChartPie chartData={this.state.chartDataSellerCustomer}> </ChartPie> : <p>Подождите</p>}
+                    <ChartPie chartData={this.state.chartDataSellerCustomer}> </ChartPie> : <p>Wait</p>}
             </div>
         );
     }

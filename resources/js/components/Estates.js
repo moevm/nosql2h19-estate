@@ -173,7 +173,7 @@ export default class Estates extends Component {
                     <div className="col-sm-12">
                         <div className="form-group">
                             <label>
-                                Страна:
+                                Country:
                                 <input
                                     value={this.state.searchCountry}
                                     type="text"
@@ -183,7 +183,7 @@ export default class Estates extends Component {
                                 />
                             </label>
                             <label>
-                                Город:
+                                City:
                                 <input
                                     value={this.state.searchCity}
                                     type="text"
@@ -193,7 +193,7 @@ export default class Estates extends Component {
                                 />
                             </label>
                             <label>
-                                Планировка:
+                                Layout:
                                 <input
                                     value={this.state.searchLayout}
                                     type="text"
@@ -204,7 +204,7 @@ export default class Estates extends Component {
                                 />
                             </label>
                             <label>
-                                Стоимость, от:
+                                Price, from:
                                 <input
                                     value={this.state.searchPriceUp}
                                     type="number"
@@ -215,7 +215,7 @@ export default class Estates extends Component {
                                 />
                             </label>
                             <label>
-                                Стоимость, до:
+                                Price, to:
                                 <input
                                     value={this.state.searchPriceDown}
                                     type="number"
@@ -226,21 +226,21 @@ export default class Estates extends Component {
                                 />
                             </label>
                         </div>
-                        <button onClick={this.search.bind(this)}>Поиск</button>
-                        <button onClick={this.clean.bind(this)}>Очистить</button>
+                        <button onClick={this.search.bind(this)}>Search</button>
+                        <button onClick={this.clean.bind(this)}>Clear</button>
                     </div>
                 </div>
                 <h2>
-                    Популярное
+                    Popular
                 </h2>
                 <table className="user-list table table-striped">
                     <thead>
                         <tr>
-                            <td>Страна</td>
-                            <td>Город</td>
-                            <td>Планировка</td>
-                            <td>Цена</td>
-                            <td>Площадь</td>
+                            <td>Country</td>
+                            <td>City</td>
+                            <td>Layout</td>
+                            <td>Price</td>
+                            <td>Square</td>
                         </tr>
                     </thead>
                     <tbody>

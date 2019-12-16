@@ -33,7 +33,7 @@ export default class Estate extends Component {
             });
         });
 
-        this.setState({btnAdd: 'Добавить в закладки'});
+        this.setState({btnAdd: 'Add to bookmarks'});
     }
 
     addArticle() {
@@ -45,7 +45,7 @@ export default class Estate extends Component {
             alert(response.data);
         });
 
-        this.setState({btnAdd: 'Добавлено в закладки'});
+        this.setState({btnAdd: 'Added to bookmarks'});
     }
 
     render() {
@@ -59,11 +59,11 @@ export default class Estate extends Component {
                         <div style={{}}>
                             <img src="https://freshome.com/wp-content/uploads/2012/06/Swedish-apartment-14.jpg" alt="Picture of estate" />
                             {this.str}
-                            Описание:
+                            Description:
                             <p>
                                 {this.state.article.Description}
                             </p>
-                            Дата размещения объявления:
+                            Date of property placement:
                             <p>
                                 {this.state.article.Placement_date}
                             </p>
@@ -80,37 +80,37 @@ export default class Estate extends Component {
                             Country: {this.state.estate.Country}
                         </p>
                         <p>
-                            first_name: {this.state.estate.first_name}
+                            First name: {this.state.estate.first_name}
                         </p>
                         <p>
-                            second_name: {this.state.estate.second_name}
+                            Second name: {this.state.estate.second_name}
                         </p>
                         <p>
-                            middle_name: {this.state.estate.middle_name}
+                            Middle name: {this.state.estate.middle_name}
                         </p>
                         <p>
-                            number: {this.state.estate.number}
+                            Number: {this.state.estate.number}
                         </p>
                         <p>
-                            email: {this.state.estate.email}
+                            Contact email: {this.state.estate.email}
                         </p>
                         <p>
-                            price: {this.state.estate.price}
+                            Price: {this.state.estate.price}
                         </p>
                         <p>
-                            year_build: {this.state.estate.year_build}
+                            Build date: {this.state.estate.year_build}
                         </p>
                         <p>
-                            square: {this.state.estate.square}
+                            Square: {this.state.estate.square}
                         </p>
                         <p>
-                            type_house: {this.state.estate.type_house}
+                            House type: {this.state.estate.type_house}
                         </p>
                         <p>
-                            is_primary: {this.state.estate.is_primary}
+                            Is primary: {this.state.estate.is_primary}
                         </p>
                         <p>
-                            layout: {this.state.estate.layout}
+                            Layout: {this.state.estate.layout}
                         </p>
                         <button className="btn btn-default" style={{float:'left'}} onClick={this.addArticle.bind(this)}>{this.state.btnAdd}</button>
                     </div>
